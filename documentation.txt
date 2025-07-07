@@ -1,0 +1,13 @@
+Airbnb Clone Fullstack MERN App
+
+
+Vite React project setup
+
+-open link: https://vite.dev/guide/
+-create folder client and type command: npm create vite@latest .
+-type command: npm run dev
+-open link: https://tailwindcss.com/docs/installation/using-vite
+-type command: npm install tailwindcss @tailwindcss/vite
+-in vite.config.js import function tailwindcss from package @tailwindcss/vite
+-in index.css add directive @import "tailwindcss"
+-add favicon icon
