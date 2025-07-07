@@ -11,3 +11,13 @@ Vite React project setup
 -in vite.config.js import function tailwindcss from package @tailwindcss/vite
 -in index.css add directive @import "tailwindcss"
 -add favicon icon
+
+
+Header component
+
+-open link: https://react-icons.github.io/react-icons
+-type command: npm i react-icons
+-create folder components and component Header.jsx
+-in component Header.jsx import react icons from package react-icons
+-in jsx create HTML elements with Tailwind CSS classes
+-in component App.jsx import component Header from components/Header.jsx
