@@ -11,6 +11,7 @@ Vite React project setup
 -in vite.config.js import function tailwindcss from package @tailwindcss/vite
 -in index.css add directive @import "tailwindcss"
 -add favicon icon
+-open route: http://localhost:5173
 
 
 Header component
@@ -21,3 +22,133 @@ Header component
 -in component Header.jsx import react icons from package react-icons
 -in jsx create HTML elements with Tailwind CSS classes
 -in component App.jsx import component Header from components/Header.jsx
+
+
+Register & Login pages
+
+-downgrade Tailwind CSS to version 3
+-create files: tailwind.config.cjs and postcss.config.cjs
+-open web page: https://reactrouter.com
+-type command: npm i react-router-dom
+-create folder pages and component IndexPage.jsx
+-in component App.jsx import component IndexPage from pages/IndexPage.jsx
+-import components Routes, Route from package react-router-dom 
+-in component main.jsx import component BrowserRouter from package react-router-dom
+-in folder pages create component LoginPage.jsx
+-in component App.jsx import component LoginPage from pages/LoginPage.jsx
+-in jsx add component Routes
+-in component Routes add components Route
+-open route http://localhost:5173/login
+-in folder components create component Layout.jsx
+-in component Layout.jsx import component Header from components/Header.jsx
+-import component Outlet from package react-router-dom
+-in component App.jsx import component Layout from components/Layout.jsx
+-in jsx add component Route for component Layout
+-add classes in index.css file
+-in component LoginPage.jsx import component Link from package react-router-dom
+-create component RegisterPage.jsx
+-in component RegisterPage.jsx add code similar to LoginPage.jsx
+-open route: http://localhost:5173/register
+-in component App.jsx import component RegisterPage from component RegisterPage.jsx
+-in jsx add component Route for component RegisterPage
+-create folder api and type command npm init -y
+-create index.js file
+-open link: https://expressjs.com
+-type command: npm i express
+-in index.js file import function express from package express
+-create variable const app
+-invoke functions app.get() and app.listen()
+-type command: npm i nodemon
+-in package.json file add commands start and dev
+-create .gitignore file
+-type command npm run dev
+-open route: http://localhost:4000/test
+-in component RegisterPage.jsx import function useState from package react
+-create three variables const name, const email and const password
+-create three state functions setName, setEmail and setPassword
+-in jsx add to input elements props value and onChange
+-create async function handleRegisterUser()
+-add to form elements event onSubmit
+-click register button
+-open link: https://www.npmjs.com/package/axios
+-type command: npm i axios 
+-open link: https://www.npmjs.com/package/cors
+-in index.js file import function cors from package cors
+-invoke function app.use(cors())
+-in components App.jsx and RegisterPage.jsx import function axios from package axios
+-in component App.jsx define axios baseUrl
+-in component RegisterPage(), in function handleRegisterUser() invoke function e.preventDefault()
+-invoke function axios.post() for route register
+-in index.js file invoke function app.post()
+-invoke function app.use(express.json())
+-in component RegisterPage.jsx click button register
+-open link: https://www.npmjs.com/package/mongoose
+-type command: npm i mongoose
+-create files .env and example.env
+-in .env file create variable MONGO_URL
+-in index.js file import object mongoose from package mongoose
+-invoke function mongoose.connect()
+-open link: https://www.npmjs.com/package/dotenv
+-type command: npm i dotenv
+-in index.js file add import 'dotenv/config'
+-in folder api create folder models and User.js file
+-in User.js file import object mongoose from package mongoose
+-import function Schema from package mongoose
+-create variable const UserSchema
+-create and export variable const UserModel as default
+-in index.js file import variable User from User.js file
+-in function app.post() for register invoke function User.create()
+-open link: https://www.npmjs.com/package/bcrypt
+-type command: npm i bcrypt
+-in index.js file import object bcrypt from package bcrypt
+-create variable const bcryptSalt
+-in function User.create() add to password key function bcrypt.hashSync()
+-create variable const newUser
+-open link: https://www.npmjs.com/package/react-toastify
+-type command: npm i react-toastify
+-in component App.jsx import component ToastContainer from package react-toastify
+-in component RegisterPage.jsx import function toast from package react-toastify
+-in function handleRegisterUser() add try - catch blocks
+-in block try invoke functions await axios.get() and toast.success()
+-in block catch invoke function toast.error()
+-in index.js file, in function app.post() add try - catch blocks
+-in try block add variable const newUser and function res.json(newUser)
+-in block code catch invoke function res.status(422).json(e)
+-in component LoginPage.jsx import function useState from package react
+-create state variable const email and set function setEmail
+-create state variable const password and set function setPassword
+-in jsx, add to input elements attribute value and event onChange
+-import function toast from package react-toastify
+-create async function handleLoginUser()
+-in function handleLoginUser() add blocks try - catch
+-in block try invoke functions await axios.post() and toast.success()
+-in block catch invoke function toast.error()
+-in index.js file invoke function app.post() for route login
+-in component LoginPage.jsx click Login button
+-open link: https://www.npmjs.com/package/jsonwebtoken
+-type command: npm i jsonwebtoken
+-in index.js file import object jwt from package jsonwebtoken
+-in .env file create variable JWT_SECRET
+-in index.js file create variable const jwtSecret 
+-in route app.post() for login invoke function jwt.sign()
+-in component App.jsx define method for withCredentials
+-in component LoginPage.jsx create state variable const redirect and set function setRedirect
+-import component Navigate from package react-router-dom
+-add condition if (redirect)
+-create folder context and component UserContext.jsx
+-in component UserContext.jsx create and export component UserContextProvider
+-in component App.jsx import UserContextProvider from component UserContext.jsx
+-in component LoginPage.jsx import function useContext and component UserContext
+-invoke function useContext(UserContext)
+-the value of function useContext(UserContext) store in destructured variable const { setUser }
+-in block try invoke function setUser(response.data)
+-in component Header.jsx import function useContext and component UserContext
+-in function Header() invoke function useContext(UserContext)
+-the value of function useContext(UserContext) store in destructured variable const { user }
+-in jsx add conditional rendering !!user &&
+-in component UserContext.jsx import and invoke function useEffect() from package react
+-in index.js file invoke function app.get() for route profile
+-open link: https://www.npmjs.com/package/cookie-parser
+-type command: npm i cookie-parser
+-in index.js file import function cookieParser from package cookie-parser
+-invoke function app.use(cookieParser())
