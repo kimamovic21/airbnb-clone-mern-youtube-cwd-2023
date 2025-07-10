@@ -152,3 +152,32 @@ Register & Login pages
 -type command: npm i cookie-parser
 -in index.js file import function cookieParser from package cookie-parser
 -invoke function app.use(cookieParser())
+
+
+Account Page
+
+-in component Header.jsx add dynamic prop to for variable user
+-in folder pages create component AccountPage.jsx
+-in component App.jsx import component AccountPage from component AccountPage.jsx
+-in jsx add component Route for component AccountPage
+-in component UserContext.jsx create state variable ready and set function setReady
+-in component AccountPage.jsx import function useContext, components UserContext and Navigate
+-in function AccountPage() invoke function useContext(UserContext)
+-the value of function useContext(UserContext) store in destructured variables const { ready, user }
+-add condition if (ready && !user)
+-add condition if (!ready)
+-in component AccountPage.jsx import function useParams from package react-router-dom
+-the value of function useParams() store in destructured variable let { subpage }
+-add condition if (subpage === undefined)
+-in component App.jsx add to component Route for account :subpage?
+-in component AccountPage.jsx create function linkClasses()
+-in jsx add conditional rendering subpage === 'profile' && 
+-create function handleLogout()
+-import object axios from package axios
+-in function handleLogout() invoke function axios.post() for route logout
+-in index.js invoke function app.post() for route logout
+-in component AccountPage.jsx create state variable const redirect and set function setRedirect
+-add condition if (redirect)
+-destructure variable setUser from function useContext(UserContext)
+-import function toast from package react-toastify
+-in function handleLogout() invoke functions setUser(), setRedirect() and tost.success()
