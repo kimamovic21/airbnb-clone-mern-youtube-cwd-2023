@@ -181,3 +181,19 @@ Account Page
 -destructure variable setUser from function useContext(UserContext)
 -import function toast from package react-toastify
 -in function handleLogout() invoke functions setUser(), setRedirect() and tost.success()
+-open route: http://localhost:5173/account
+
+
+Places/accommodations Page
+
+-in folder models create Place.js file
+-in Place.js file create variables const placeSchema and const PlaceModel
+-export variable PlaceModel as default
+-in folder pages create component PlacesPage.jsx
+-in component App.jsx import component PlacesPage form component PlacesPage.jsx
+-in jsx add component Route for route :action
+-http://localhost:5173/account/places
+-in component PlacesPage.jsx import and invoke function useParams() from package react-router-dom
+-destructure variable const { action }
+-in jsx add conditional rendering for variable action !== 'new' &&
+-add conditional rendering for variable action === 'new' &&

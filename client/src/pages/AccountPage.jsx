@@ -1,8 +1,12 @@
 import { useContext, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { CgProfile } from 'react-icons/cg';
+import { CiCircleList } from 'react-icons/ci';
+import { HiHomeModern } from 'react-icons/hi2';
 import { UserContext } from '../context/UserContext';
 import axios from 'axios';
+import PlacesPage from './PlacesPage';
 
 const AccountPage = () => {
   const { ready, user, setUser } = useContext(UserContext);
@@ -23,10 +27,12 @@ const AccountPage = () => {
   };
 
   const linkClasses = (type = null) => {
-    let classes = 'py-2 px-6';
+    let classes = 'flex items-center gap-1 py-2 px-6 rounded-full';
 
     if (type === subpage) {
-      classes += ' bg-primary text-white rounded-full';
+      classes += ' bg-primary text-white';
+    } else {
+      classes += ' bg-gray-200';
     };
 
     return classes;
@@ -50,21 +56,24 @@ const AccountPage = () => {
           to='/account'
           className={linkClasses('profile')}
         >
-          My profile
+          <CgProfile />
+          <span>My profile</span>
         </Link>
 
         <Link
           to='/account/bookings'
           className={linkClasses('bookings')}
         >
-          My bookings
+          <CiCircleList />
+          <span>My bookings</span>
         </Link>
 
         <Link
           to='/account/places'
           className={linkClasses('places')}
         >
-          My accommodations
+          < HiHomeModern />
+          <span>My accommodations</span>
         </Link>
       </nav>
 
@@ -82,6 +91,10 @@ const AccountPage = () => {
             Logout
           </button>
         </div>
+      )}
+
+      {subpage === 'places' && (
+        <PlacesPage />
       )}
     </div>
   );
