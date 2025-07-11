@@ -215,3 +215,13 @@ Upload by link
 -type command: npm i image-downloader
 -invoke function app.use() for route uploads
 -open route: http://localhost:5173/account/places/new and add new image link
+
+
+Upload photos from your device functionality
+
+-in component PlacesPage.jsx create function handleUploadPhoto()
+-open link: https://www.npmjs.com/package/multer
+-type command: npm i multer
+-in index.js file import function multer from package multer
+-invoke function app.post() for route 'upload'
+-in component Perks.jsx create function handleCheckboxClick()

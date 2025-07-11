@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 import express from 'express';
 import cors from 'cors';
@@ -6,6 +7,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import imageDownloader from 'image-downloader';
+import multer from 'multer';
 import User from './models/User.js';
 import 'dotenv/config';
 
@@ -107,6 +109,23 @@ app.post('/upload-by-link', async (req, res) => {
   });
 
   res.json(uploadedImage);
+});
+
+const photosMiddleware = multer({ dest: 'uploads' });
+
+app.post('/upload', photosMiddleware.array('photos', 100), (req, res) => {
+  const uploadedFiles = [];
+
+  for (let i = 0; i < req.files.length; i++) {
+    const { path, originalName } = req.files[i];
+    const parts = originalName.split('.');
+    const ext = parts.length - 1;
+    const newPath = path + '.' + ext;
+    fs.renameSync(path, newPath);
+    uploadedFiles.push(newPath.replace('uploads/', ''));
+  };
+
+  res.json(uploadedFiles);
 });
 
 app.listen(4000);
