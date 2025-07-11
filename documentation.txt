@@ -197,3 +197,21 @@ Places/accommodations Page
 -destructure variable const { action }
 -in jsx add conditional rendering for variable action !== 'new' &&
 -add conditional rendering for variable action === 'new' &&
+
+
+Upload by link
+
+-in component PlacesPage.jsx create HTML elements with Tailwind CSS classes for images upload and other information
+-create state variables for rental property information
+-in folder component create component Perks.jsx
+-in component PlacesPage.jsx import component Perks from component Perks.jsx
+-create function handleAddPhotoByLink()
+-in function handleAddPhotoByLink() invoke function axios.post()
+-in jsx add to button element event onClick
+-in event onClick pass the function handleAddPhotoByLink()
+-in jsx add conditional rendering addedPhotos.length > 0 &&
+-in index.js file invoke function app.post for route upload-by-link
+-open link: https://www.npmjs.com/package/image-downloader
+-type command: npm i image-downloader
+-invoke function app.use() for route uploads
+-open route: http://localhost:5173/account/places/new and add new image link
