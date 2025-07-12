@@ -35,11 +35,12 @@ const PlacesPage = () => {
               key={place._id}
               className='flex cursor-pointer gap-4 bg-gray-100 p-4 rounded-2xl'
             >
-              <div className='w-32 h-32 bg-gray-300'>
+              <div className='flex w-40 h-40 bg-gray-300'>
                 {place.photos.length > 0 && (
                   <img
                     src={'http://localhost:4000/' + place.photos[0].replace(/\\/g, '/')}
                     alt={place.title}
+                    className='object-cover rounded-sm'
                   />
                 )}
               </div>

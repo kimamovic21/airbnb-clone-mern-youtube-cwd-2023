@@ -80,7 +80,7 @@ const PhotosUploader = ({ addedPhotos, setAddedPhotos }) => {
             <img
               src={getCleanImageUrl(imageLink)}
               alt='Uploaded place photo'
-              className='rounded-2xl w-full object-cover'
+              className='object-cover'
             />
           </div>
         ))}

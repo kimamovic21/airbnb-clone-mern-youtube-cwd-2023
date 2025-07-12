@@ -32,6 +32,7 @@ const Perks = ({ perks, setPerks }) => {
       <div className='mt-2 grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6'>
         <label className='border p-4 flex rounded-2xl gap-2 items-center'>
           <input
+            checked={perks.includes('wifi')}
             name='wifi'
             type='checkbox'
             onChange={handleCheckboxClick}
@@ -42,16 +43,21 @@ const Perks = ({ perks, setPerks }) => {
 
         <label className='border p-4 flex rounded-2xl gap-2 items-center'>
           <input
+            checked={perks.includes('parking')}
             name='parking'
-            type='checkbox' />
+            type='checkbox'
+            onChange={handleCheckboxClick}
+          />
           <FaParking />
           <span>Free parking spot</span>
         </label>
 
         <label className='border p-4 flex rounded-2xl gap-2 items-center'>
           <input
+            checked={perks.includes('tv')}
             name='tv'
             type='checkbox'
+            onChange={handleCheckboxClick}
           />
           <FaTv />
           <span>TV</span>
@@ -59,8 +65,10 @@ const Perks = ({ perks, setPerks }) => {
 
         <label className='border p-4 flex rounded-2xl gap-2 items-center'>
           <input
+            checked={perks.includes('radio')}
             name='radio'
             type='checkbox'
+            onChange={handleCheckboxClick}
           />
           <FaRadio />
           <span>Radio</span>
@@ -68,8 +76,10 @@ const Perks = ({ perks, setPerks }) => {
 
         <label className='border p-4 flex rounded-2xl gap-2 items-center'>
           <input
+            checked={perks.includes('pets')}
             name='pets'
             type='checkbox'
+            onChange={handleCheckboxClick}
           />
           <MdOutlinePets />
           <span>Pets</span>
@@ -77,8 +87,10 @@ const Perks = ({ perks, setPerks }) => {
 
         <label className='border p-4 flex rounded-2xl gap-2 items-center'>
           <input
+            checked={perks.includes('entrance')}
             name='entrance'
             type='checkbox'
+            onChange={handleCheckboxClick}
           />
           <MdDoorSliding />
           <span>Private entrance</span>

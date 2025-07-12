@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Perks from '../components/Perks';
@@ -7,6 +7,8 @@ import PhotosUploader from '../components/PhotosUploader';
 import AccountNav from '../components/AccountNav';
 
 const PlacesFormPage = () => {
+  const { id } = useParams();
+
   const [title, setTitle] = useState('');
   const [address, setAddress] = useState('');
   const [addedPhotos, setAddedPhotos] = useState([]);
@@ -18,30 +20,66 @@ const PlacesFormPage = () => {
   const [maxGuests, setMaxGuests] = useState(2);
   const [redirect, setRedirect] = useState(false);
 
-  const handleAddNewPlace = async (e) => {
+  useEffect(() => {
+    if (!id) {
+      return;
+    };
+
+    axios.get(`/places/${id}`)
+      .then((res) => {
+        const { data } = res;
+        setTitle(data.title);
+        setAddress(data.address);
+        setAddedPhotos(data.photos);
+        setDescription(data.description);
+        setPerks(data.perks);
+        setExtraInfo(data.extraInfo);
+        setCheckIn(data.checkIn);
+        setCheckOut(data.checkOut);
+        setMaxGuests(data.maxGuests);
+      })
+  }, [id]);
+
+  const handleSavePlace = async (e) => {
     e.preventDefault();
 
-    try {
-      const placeData = {
-        title,
-        address,
-        addedPhotos,
-        description,
-        perks,
-        extraInfo,
-        checkIn,
-        checkOut,
-        maxGuests
+    const placeData = {
+      title,
+      address,
+      addedPhotos,
+      description,
+      perks,
+      extraInfo,
+      checkIn,
+      checkOut,
+      maxGuests
+    };
+
+    if (id) {
+      try {
+        await axios.put('/places', {
+          id,
+          ...placeData
+        });
+
+        toast.success('Property updated successfully.');
+
+        setRedirect(true);
+      } catch (e) {
+        console.error(e);
+        toast.error(e);
       };
+    } else {
+      try {
+        await axios.post('/places', placeData);
 
-      await axios.post('/places', placeData);
+        toast.success('Property created successfully.');
 
-      toast.success('Property created successfully.');
-
-      setRedirect(true);
-    } catch (e) {
-      console.error(e);
-      toast.error(e);
+        setRedirect(true);
+      } catch (e) {
+        console.error(e);
+        toast.error(e);
+      };
     };
   };
 
@@ -52,7 +90,7 @@ const PlacesFormPage = () => {
   return (
     <div>
       <AccountNav />
-      <form onSubmit={handleAddNewPlace}>
+      <form onSubmit={handleSavePlace}>
         <h2 className='text-2xl mt-4'>
           Title
         </h2>
