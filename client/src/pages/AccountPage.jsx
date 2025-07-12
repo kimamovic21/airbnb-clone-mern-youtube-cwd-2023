@@ -1,12 +1,10 @@
 import { useContext, useState } from 'react';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { CgProfile } from 'react-icons/cg';
-import { CiCircleList } from 'react-icons/ci';
-import { HiHomeModern } from 'react-icons/hi2';
 import { UserContext } from '../context/UserContext';
 import axios from 'axios';
 import PlacesPage from './PlacesPage';
+import AccountNav from '../components/AccountNav';
 
 const AccountPage = () => {
   const { ready, user, setUser } = useContext(UserContext);
@@ -26,18 +24,6 @@ const AccountPage = () => {
     return <Navigate to='/login' />
   };
 
-  const linkClasses = (type = null) => {
-    let classes = 'flex items-center gap-1 py-2 px-6 rounded-full';
-
-    if (type === subpage) {
-      classes += ' bg-primary text-white';
-    } else {
-      classes += ' bg-gray-200';
-    };
-
-    return classes;
-  };
-
   const handleLogout = async () => {
     await axios.post('/logout');
     setRedirect('/');
@@ -51,31 +37,7 @@ const AccountPage = () => {
 
   return (
     <div>
-      <nav className='w-full flex justify-center mt-8 gap-2 mb-8'>
-        <Link
-          to='/account'
-          className={linkClasses('profile')}
-        >
-          <CgProfile />
-          <span>My profile</span>
-        </Link>
-
-        <Link
-          to='/account/bookings'
-          className={linkClasses('bookings')}
-        >
-          <CiCircleList />
-          <span>My bookings</span>
-        </Link>
-
-        <Link
-          to='/account/places'
-          className={linkClasses('places')}
-        >
-          < HiHomeModern />
-          <span>My accommodations</span>
-        </Link>
-      </nav>
+      <AccountNav />
 
       {subpage === 'profile' && (
         <div className='text-center max-w-lg mx-auto'>

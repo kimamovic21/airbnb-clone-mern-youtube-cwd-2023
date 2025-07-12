@@ -225,3 +225,17 @@ Upload photos from your device functionality
 -in index.js file import function multer from package multer
 -invoke function app.post() for route 'upload'
 -in component Perks.jsx create function handleCheckboxClick()
+
+
+Small bugfixes and code refactoring
+
+-in folder components create component PhotosUploader.jsx
+-in component PlacesPage.jsx import component PhotosUploader from component PhotosUploader.jsx
+-in component PlacesPage.jsx create async function handleAddNewPlace()
+-in jsx add to form element event onSubmit
+-create state variable const redirect and set function setRedirect
+-add condition if (redirect)
+-in index.js file invoke function app.post() for route 'places'
+-in folder components create component PlacesFormPage.jsx
+-in component PlacesPage.jsx import component PlacesFormPage from component PlacesFormPage.jsx
+-in component App.jsx import components PlacesPage and PlacesFormPage
