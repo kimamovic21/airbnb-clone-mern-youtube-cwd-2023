@@ -38,6 +38,16 @@ const PhotosUploader = ({ addedPhotos, setAddedPhotos }) => {
     });
   };
 
+  const getCleanImageUrl = (imageLink) => {
+    let cleaned = imageLink.replace(/\\/g, '/');
+
+    if (cleaned.startsWith('uploads/')) {
+      cleaned = cleaned.substring('uploads/'.length);
+    };
+
+    return `http://localhost:4000/uploads/${cleaned}`;
+  };
+
   return (
     <>
       <h2 className='text-2xl mt-4'>
@@ -68,8 +78,8 @@ const PhotosUploader = ({ addedPhotos, setAddedPhotos }) => {
         {addedPhotos.length > 0 && addedPhotos?.map((imageLink) => (
           <div key={imageLink} className='h-32 flex'>
             <img
-              src={'http://localhost:4000/uploads/' + imageLink}
-              alt='Image link'
+              src={getCleanImageUrl(imageLink)}
+              alt='Uploaded place photo'
               className='rounded-2xl w-full object-cover'
             />
           </div>

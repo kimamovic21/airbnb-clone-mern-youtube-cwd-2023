@@ -106,7 +106,7 @@ app.post('/upload-by-link', async (req, res) => {
 
   await imageDownloader.image({
     url: link,
-    dest: __dirname + '/uploads/' + uploadedImage, // <-- fix here
+    dest: __dirname + '/uploads/' + uploadedImage,
   });
 
   res.json(uploadedImage);
@@ -151,7 +151,7 @@ app.post('/places', async (req, res) => {
       owner: userData.id,
       title,
       address,
-      addedPhotos,
+      photos: addedPhotos,
       description,
       perks,
       extraInfo,
@@ -161,6 +161,18 @@ app.post('/places', async (req, res) => {
     });
 
     res.json(newPlace);
+  });
+});
+
+app.get('/places', async (req, res) => {
+  const { token } = req.cookies;
+
+  jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+    if (err) throw err;
+
+    const { id } = userData;
+
+    res.json(await Place.find({ owner: id }));
   });
 });
 

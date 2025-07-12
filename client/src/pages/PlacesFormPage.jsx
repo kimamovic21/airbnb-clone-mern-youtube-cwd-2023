@@ -33,6 +33,7 @@ const PlacesFormPage = () => {
         checkOut,
         maxGuests
       };
+
       await axios.post('/places', placeData);
 
       toast.success('Property created successfully.');

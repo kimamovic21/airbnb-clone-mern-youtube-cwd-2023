@@ -239,3 +239,14 @@ Small bugfixes and code refactoring
 -in folder components create component PlacesFormPage.jsx
 -in component PlacesPage.jsx import component PlacesFormPage from component PlacesFormPage.jsx
 -in component App.jsx import components PlacesPage and PlacesFormPage
+
+
+Listing user places/accommodations
+
+-in function PhotosUploader.jsx create function getCleanImageUrl()
+-in component PlacesPage.jsx import functions useState and useEffect
+-create state variable const places and set function setPlaces
+-invoke function useEffect()
+-import function axios from package axios
+-in function useEffect() invoke function axios.get()
+-in index.js file invoke function app.get() for route 'places'
