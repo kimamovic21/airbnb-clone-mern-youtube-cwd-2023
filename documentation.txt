@@ -265,3 +265,18 @@ Deleting photos and selecting main/cover photos
 -in component PhotosUploader.jsx create div element for component FaTrash
 -create button elements for image deleting and image selecting as main/cover photo
 -create functions handleRemovePhoto() and handleSelectAsMainPhoto()
+
+
+Listing places on the homepage
+
+-in index.js file rename function app.get('/places') to app.get('/user-places')
+-invoke function app.get('/places')
+-in component IndexPage.jsx import functions useState and useEffect from package react
+-import object axios from package axios
+-create state variable const places and set function setPlaces
+-invoke useEffect()
+-create function getImageUrl()
+-in jsx add conditional rendering places.length > 0 && places?.map()
+-create HTML elements with Tailwind CSS classes
+-import component Link from package react-router-dom
+-

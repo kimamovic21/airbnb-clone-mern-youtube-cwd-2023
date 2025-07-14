@@ -18,6 +18,7 @@ const PlacesFormPage = () => {
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [maxGuests, setMaxGuests] = useState(2);
+  const [price, setPrice] = useState(0);
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const PlacesFormPage = () => {
     axios.get(`/places/${id}`)
       .then((res) => {
         const { data } = res;
+
         setTitle(data.title);
         setAddress(data.address);
         setAddedPhotos(data.photos);
@@ -37,6 +39,7 @@ const PlacesFormPage = () => {
         setCheckIn(data.checkIn);
         setCheckOut(data.checkOut);
         setMaxGuests(data.maxGuests);
+        setPrice(data.price);
       })
   }, [id]);
 
@@ -52,7 +55,8 @@ const PlacesFormPage = () => {
       extraInfo,
       checkIn,
       checkOut,
-      maxGuests
+      maxGuests,
+      price
     };
 
     if (id) {
@@ -156,13 +160,13 @@ const PlacesFormPage = () => {
           add check in and out times
         </p>
 
-        <div className='grid gap-2 sm:grid-cols-3'>
+        <div className='grid gap-2 grid-cols-2 md:grid-cols-4'>
           <div>
             <h3 className='mt-2 -mb-1'>
               Check in time
             </h3>
             <input
-              type='text'
+              type='number'
               placeholder='02:00pm'
               value={checkIn}
               onChange={(e) => setCheckIn(e.target.value)}
@@ -174,7 +178,7 @@ const PlacesFormPage = () => {
               Check out time
             </h3>
             <input
-              type='text'
+              type='number'
               placeholder='12:00am'
               value={checkOut}
               onChange={(e) => setCheckOut(e.target.value)}
@@ -186,10 +190,22 @@ const PlacesFormPage = () => {
               Max number of guests
             </h3>
             <input
-              type='text'
+              type='number'
               placeholder='2,3,4...'
               value={maxGuests}
               onChange={(e) => setMaxGuests(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <h3 className='mt-2 -mb-1'>
+              Price per night
+            </h3>
+            <input
+              type='number'
+              placeholder='$99'
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
             />
           </div>
         </div>
