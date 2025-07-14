@@ -258,3 +258,10 @@ Editing existing places
 -import and invoke function useParams() from package react-router-dom
 -in index.js file invoke function app.get() for route 'places/:id'
 -invoke function app.put() for route 'places'
+
+
+Deleting photos and selecting main/cover photos
+
+-in component PhotosUploader.jsx create div element for component FaTrash
+-create button elements for image deleting and image selecting as main/cover photo
+-create functions handleRemovePhoto() and handleSelectAsMainPhoto()

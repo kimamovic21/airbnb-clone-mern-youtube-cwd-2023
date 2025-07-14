@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { FaCloudUploadAlt } from 'react-icons/fa';
+import { FaCloudUploadAlt, FaTrash, FaStar } from 'react-icons/fa';
+import { CiStar } from 'react-icons/ci';
 import axios from 'axios';
 
 const PhotosUploader = ({ addedPhotos, setAddedPhotos }) => {
@@ -48,6 +49,18 @@ const PhotosUploader = ({ addedPhotos, setAddedPhotos }) => {
     return `http://localhost:4000/uploads/${cleaned}`;
   };
 
+  const handleRemovePhoto = (e, filename) => {
+    e.preventDefault();
+
+    setAddedPhotos([...addedPhotos.filter(photo => photo !== filename)]);
+  };
+
+  const handleSelectAsMainPhoto = (e, filename) => {
+    e.preventDefault();
+
+    setAddedPhotos([filename, ...addedPhotos.filter(photo => photo !== filename)]);
+  };
+
   return (
     <>
       <h2 className='text-2xl mt-4'>
@@ -76,12 +89,32 @@ const PhotosUploader = ({ addedPhotos, setAddedPhotos }) => {
 
       <div className='mt-2 grid gap-2 grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
         {addedPhotos.length > 0 && addedPhotos?.map((imageLink) => (
-          <div key={imageLink} className='h-32 flex'>
+          <div
+            key={imageLink}
+            className='relative h-32 flex'
+          >
             <img
               src={getCleanImageUrl(imageLink)}
               alt='Uploaded place photo'
-              className='object-cover'
+              className='object-cover w-full'
             />
+            <button
+              className='cursor-pointer absolute bottom-1 right-1 p-2 rounded-2xl text-white bg-black bg-opacity-50'
+              onClick={(e) => handleRemovePhoto(e, imageLink)}
+            >
+              <FaTrash />
+            </button>
+            <button
+              className='cursor-pointer absolute bottom-1 left-1 p-2 rounded-2xl text-white bg-black bg-opacity-50'
+              onClick={(e) => handleSelectAsMainPhoto(e, imageLink)}
+            >
+              {imageLink === addedPhotos[0] && (
+                <FaStar />
+              )}
+              {imageLink !== addedPhotos[0] && (
+                <CiStar />
+              )}
+            </button>
           </div>
         ))}
 
