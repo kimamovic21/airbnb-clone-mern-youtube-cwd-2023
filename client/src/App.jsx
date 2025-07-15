@@ -9,6 +9,7 @@ import RegisterPage from './pages/RegisterPage';
 import AccountPage from './pages/AccountPage';
 import PlacesPage from './pages/PlacesPage';
 import PlacesFormPage from './pages/PlacesFormPage';
+import PlacePage from './pages/PlacePage';
 
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.withCredentials = true;
@@ -26,6 +27,7 @@ const App = () => {
             <Route path='/account/places' element={<PlacesPage />} />
             <Route path='/account/places/new' element={<PlacesFormPage />} />
             <Route path='/account/places/:id' element={<PlacesFormPage />} />
+            <Route path='/places/:id' element={<PlacePage />} />
           </Route>
         </Routes>
         <ToastContainer />

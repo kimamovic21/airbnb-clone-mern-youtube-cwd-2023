@@ -22,7 +22,7 @@ const IndexPage = () => {
         return (
           <Link
             key={place._id}
-            to={`/place/${place._id}`}
+            to={`/places/${place._id}`}
             className='bg-gray-200 px-1 rounded-xl'
           >
             <div className='bg-gray-500 mb-2 rounded-2xl flex'>

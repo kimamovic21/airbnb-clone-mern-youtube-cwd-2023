@@ -279,4 +279,20 @@ Listing places on the homepage
 -in jsx add conditional rendering places.length > 0 && places?.map()
 -create HTML elements with Tailwind CSS classes
 -import component Link from package react-router-dom
--
+
+
+Single place page
+
+-in folder pages create component PlacePage.jsx
+-in component App.jsx import component PlacePage from component PlacePage.jsx
+-import functions useState and useEffect from package react
+-import object axios from package axios
+-import function useParams from package react-router-dom
+-create state variable const place and set function setPlace
+-invoke function useEffect()
+-in jsx create component Route for component PlacePage
+-in component PlacePage.jsx create HTML elements with Tailwind CSS variables
+-create state variable const showAllPhotos and set function setShowAllPhotos
+-add condition if (showAllPhotos)
+-create component BookingWidget.jsx
+-in component PlacePage.jsx import component BookingWidget from component BookingPage.jsx

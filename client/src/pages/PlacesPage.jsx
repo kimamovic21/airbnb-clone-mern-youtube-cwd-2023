@@ -33,9 +33,9 @@ const PlacesPage = () => {
             <Link
               to={`/account/places/${place._id}`}
               key={place._id}
-              className='flex cursor-pointer gap-4 bg-gray-100 p-4 rounded-2xl'
+              className='flex flex-col md:flex-row cursor-pointer gap-4 bg-gray-100 p-4 rounded-2xl'
             >
-              <div className='flex w-40 h-40 bg-gray-300'>
+              <div className='flex bg-gray-300'>
                 {place.photos.length > 0 && (
                   <img
                     src={'http://localhost:4000/' + place.photos[0].replace(/\\/g, '/')}
@@ -49,7 +49,7 @@ const PlacesPage = () => {
                 <h2 className='text-xl font-bold'>
                   {place.title}
                 </h2>
-                <p className='mt-2 text-sm'>
+                <p className='mt-2 text-sm text-justify'>
                   {place.description}
                 </p>
               </div>
