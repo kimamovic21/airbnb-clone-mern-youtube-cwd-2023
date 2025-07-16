@@ -312,3 +312,26 @@ Booking functionality
 -create variable const totalBookingPrice
 -create state variable const redirect and set function setRedirect
 -add condition if (redirect) 
+
+
+User bookings page
+
+-in folder pages create components BookingsPage.jsx and BookingPage.jsx
+-in component App.jsx import components BookingsPage.jsx and BookingPage.jsx
+-add components Route for components BookingsPage and BookingPage
+-in component BookingsPage.jsx import component AccountNav from component AccountNav.jsx
+-in index.js file invoke function app.get() for route bookings
+-in component BookingsPage.jsx import functions useEffect and useState from package react
+-import component AccountNav from component AccountNav.jsx
+-import object axios from package axios
+-create state variable const bookings and set function setBookings
+-invoke function useEffect()
+-in jsx crete HTML elements with Tailwind CSS classes
+-in component BookingWidget.jsx import function useEffect from package react
+-invoke function useEffect()
+-in function useEffect() add condition if (user) 
+-create components Image.jsx and PlaceImg.jsx
+-in component PlaceImg.jsx import component Image from component Image.jsx
+-in component BookingsPage.jsx import component PlaceImg from component PlaceImg.jsx
+-create component BookingDates.jsx
+-in component BookingsPage.jsx import component BookingDates from component BookingDates.jsx

@@ -276,4 +276,31 @@ app.post('/bookings', async (req, res) => {
   };
 });
 
+app.get('/bookings', async (req, res) => {
+  try {
+    const { token } = req.cookies;
+
+    if (!token) {
+      return res.status(401).json({
+        message: 'Unauthorized: No token provided'
+      });
+    };
+
+    const userData = await new Promise((resolve, reject) => {
+      jwt.verify(token, jwtSecret, {}, (err, decoded) => {
+        if (err) reject(err);
+        else resolve(decoded);
+      });
+    });
+
+    res.json(await Booking
+      .find({ user: userData.id })
+      .populate('place')
+    );
+  } catch (error) {
+    console.error('Failed to fetch bookings:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  };
+});
+
 app.listen(4000);
