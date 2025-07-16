@@ -296,3 +296,19 @@ Single place page
 -add condition if (showAllPhotos)
 -create component BookingWidget.jsx
 -in component PlacePage.jsx import component BookingWidget from component BookingPage.jsx
+
+
+Booking functionality
+
+-in component BookingWidget.jsx create three state variables and three set functions
+-open link: https://www.npmjs.com/package/date-fns
+-type command: npm i date-fns
+-in index.js file invoke function app.post() for route booking
+-in folder models create Booking.js file
+-in Booking.js file create variable bookingSchema
+-create and export variable const BookingModel as default
+-in index.js file import variable Booking from Booking.js file
+-in component BookingWidget.jsx create async function handleBookPlace()
+-create variable const totalBookingPrice
+-create state variable const redirect and set function setRedirect
+-add condition if (redirect) 

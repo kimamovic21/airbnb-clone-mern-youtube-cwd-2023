@@ -10,6 +10,7 @@ import imageDownloader from 'image-downloader';
 import multer from 'multer';
 import User from './models/User.js';
 import Place from './models/Place.js';
+import Booking from './models/Booking.js';
 import 'dotenv/config';
 
 const app = express();
@@ -228,6 +229,51 @@ app.put('/places', async (req, res) => {
 
 app.get('/places', async (req, res) => {
   res.json(await Place.find());
+});
+
+app.post('/bookings', async (req, res) => {
+  try {
+    const { token } = req.cookies;
+
+    if (!token) {
+      return res.status(401).json({
+        message: 'Unauthorized: No token provided'
+      });
+    };
+
+    const userData = await new Promise((resolve, reject) => {
+      jwt.verify(token, jwtSecret, {}, (err, decoded) => {
+        if (err) reject(err);
+        else resolve(decoded);
+      });
+    });
+
+    const {
+      place,
+      checkIn,
+      checkOut,
+      numberOfGuests,
+      guestName,
+      phone,
+      price
+    } = req.body;
+
+    const booking = await Booking.create({
+      user: userData.id,
+      place,
+      checkIn,
+      checkOut,
+      numberOfGuests,
+      guestName,
+      phone,
+      price,
+    });
+
+    res.status(201).json(booking);
+  } catch (error) {
+    console.error('Booking creation failed:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  };
 });
 
 app.listen(4000);
