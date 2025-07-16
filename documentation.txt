@@ -335,3 +335,10 @@ User bookings page
 -in component BookingsPage.jsx import component PlaceImg from component PlaceImg.jsx
 -create component BookingDates.jsx
 -in component BookingsPage.jsx import component BookingDates from component BookingDates.jsx
+
+
+Private route component
+
+-in folder components create component PrivateRoute.jsx
+-in component App.jsx import component PrivateRoute from component PrivateRoute.jsx
+-add component PrivateRoute for routes account

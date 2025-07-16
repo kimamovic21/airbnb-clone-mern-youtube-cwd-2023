@@ -2,7 +2,10 @@ import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { UserContextProvider } from './context/UserContext';
 import axios from 'axios';
+
 import Layout from './components/Layout';
+import PrivateRoute from './components/PrivateRoute';
+
 import IndexPage from './pages/IndexPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -25,13 +28,56 @@ const App = () => {
             <Route index element={<IndexPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
-            <Route path='/account' element={<AccountPage />} />
-            <Route path='/account/places' element={<PlacesPage />} />
-            <Route path='/account/places/new' element={<PlacesFormPage />} />
-            <Route path='/account/places/:id' element={<PlacesFormPage />} />
             <Route path='/places/:id' element={<PlacePage />} />
-            <Route path='/account/bookings' element={<BookingsPage />} />
-            <Route path='/account/bookings/:id' element={<BookingPage />} />
+
+            <Route
+              path='/account'
+              element={
+                <PrivateRoute>
+                  <AccountPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path='/account/places'
+              element={
+                <PrivateRoute>
+                  <PlacesPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path='/account/places/new'
+              element={
+                <PrivateRoute>
+                  <PlacesFormPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path='/account/places/:id'
+              element={
+                <PrivateRoute>
+                  <PlacesFormPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path='/account/bookings'
+              element={
+                <PrivateRoute>
+                  <BookingsPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path='/account/bookings/:id'
+              element={
+                <PrivateRoute>
+                  <BookingPage />
+                </PrivateRoute>
+              }
+            />
           </Route>
         </Routes>
         <ToastContainer />
