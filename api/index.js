@@ -258,6 +258,22 @@ app.post('/bookings', async (req, res) => {
       price
     } = req.body;
 
+    const overlappingBooking = await Booking.findOne({
+      place,
+      $or: [
+        {
+          checkIn: { $lt: new Date(checkOut) },
+          checkOut: { $gt: new Date(checkIn) },
+        },
+      ],
+    });
+
+    if (overlappingBooking) {
+      return res.status(409).json({
+        message: 'This place is already booked for the selected dates. Please choose different dates.'
+      });
+    };
+
     const booking = await Booking.create({
       user: userData.id,
       place,

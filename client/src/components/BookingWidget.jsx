@@ -51,8 +51,12 @@ const BookingWidget = ({ place }) => {
 
       toast.success('Successfully booked.');
     } catch (e) {
-      console.error(e);
-      toast.error(e);
+      if (e.response && e.response.status === 409) {
+        toast.error(e.response.data.message);
+      } else {
+        console.error(e);
+        toast.error('Something went wrong. Please try again.');
+      };
     };
   };
 
