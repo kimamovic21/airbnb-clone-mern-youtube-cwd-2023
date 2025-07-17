@@ -73,6 +73,7 @@ const BookingWidget = ({ place }) => {
           <div className='my-4 py-3 px-4'>
             <label>Check in:</label>
             <input
+              required
               type='date'
               value={checkIn}
               onChange={(e) => setCheckIn(e.target.value)}
@@ -82,6 +83,7 @@ const BookingWidget = ({ place }) => {
           <div className='my-4 py-3 px-4 mb-4 border-l'>
             <label>Check out:</label>
             <input
+              required
               type='date'
               value={checkOut}
               onChange={(e) => setCheckOut(e.target.value)}
@@ -92,6 +94,7 @@ const BookingWidget = ({ place }) => {
         <div className='my-4 py-3 px-4 mb-4 border-t'>
           <label>Number of guests:</label>
           <input
+            required
             type='number'
             value={numberOfGuests}
             onChange={(e) => setNumberOfGuests(e.target.value)}
@@ -102,6 +105,7 @@ const BookingWidget = ({ place }) => {
           <div className='py-3 px-4 border-t'>
             <label>Your full name:</label>
             <input
+              required
               type='text'
               placeholder='John Doe'
               value={guestName}
@@ -109,6 +113,7 @@ const BookingWidget = ({ place }) => {
             />
             <label>Phone number:</label>
             <input
+              required
               type='tel'
               placeholder='John Doe'
               value={phone}
@@ -118,22 +123,24 @@ const BookingWidget = ({ place }) => {
         )}
       </div>
 
-      <button
-        className='primary mt-4'
-        onClick={handleBookPlace}
-      >
-        <span>
-          Book this place:
-        </span>
-        {numberOfNights > 0 && (
-          <>
-            <span className='ml-1'>$</span>
-            <span>
-              {totalBookingPrice}
-            </span>
-          </>
-        )}
-      </button>
+      {user ? (
+        <button
+          className='primary mt-4'
+          onClick={handleBookPlace}
+        >
+          <span>Book this place:</span>
+          {numberOfNights > 0 && (
+            <>
+              <span className='ml-1'>$</span>
+              <span>{totalBookingPrice}</span>
+            </>
+          )}
+        </button>
+      ) : (
+        <div className='mt-4 text-center text-red-500 font-semibold'>
+          Please log in to book this place.
+        </div>
+      )}
     </div>
   );
 };
