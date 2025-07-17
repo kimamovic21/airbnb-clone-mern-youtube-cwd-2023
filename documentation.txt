@@ -342,3 +342,17 @@ Private route component
 -in folder components create component PrivateRoute.jsx
 -in component App.jsx import component PrivateRoute from component PrivateRoute.jsx
 -add component PrivateRoute for routes account
+
+
+Single booking page
+
+-in component BookingPage.jsx import functions useState, useEffect and useParams
+-import object axios from package axios
+-destructure variable const { id }
+-create state variable const booking and set function setBooking
+-invoke function useEffect()
+-in function useEffect() add condition if (id)
+-in condition if (id) invoke function axios.get()
+-in jsx create HTML elements with Tailwind CSS classes
+-in folder components create components PlaceGallery.jsx and AddressLink.jsx
+-in component BookingPage.jsx import components PlaceGallery and AddressLink

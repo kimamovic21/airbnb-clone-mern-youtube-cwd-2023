@@ -8,7 +8,7 @@ const Image = ({ src, ...rest }) => {
     : `http://localhost:4000/uploads/${cleanedSrc.replace(/^uploads\//, '')}`;
 
   return (
-    <img
+    <img className='w-full'
       {...rest}
       src={fullSrc}
       alt=''
