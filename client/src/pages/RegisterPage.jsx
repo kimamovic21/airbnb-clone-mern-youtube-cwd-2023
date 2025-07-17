@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
@@ -7,6 +7,7 @@ const RegisterPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [redirect, setRedirect] = useState(false);
 
   const handleRegisterUser = async (e) => {
     e.preventDefault();
@@ -17,12 +18,18 @@ const RegisterPage = () => {
         email,
         password
       });
+      
+      setRedirect(true);
 
       toast.success('Registration successful. Now you can log in.');
     } catch (e) {
       console.error(e);
       toast.error('Registration failed. Please try again later.');
     };
+  };
+
+  if (redirect) {
+    return <Navigate to='/login' />;
   };
 
   return (
@@ -37,18 +44,21 @@ const RegisterPage = () => {
           onSubmit={handleRegisterUser}
         >
           <input
+            required
             type='text'
             placeholder='John Doe'
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
+            required
             type='email'
             placeholder='Your email address'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
+            required
             type='password'
             placeholder='Your password'
             value={password}

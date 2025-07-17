@@ -78,6 +78,7 @@ const BookingWidget = ({ place }) => {
             <label>Check in:</label>
             <input
               required
+              min={new Date().toISOString().split('T')[0]}
               type='date'
               value={checkIn}
               onChange={(e) => setCheckIn(e.target.value)}
@@ -88,6 +89,7 @@ const BookingWidget = ({ place }) => {
             <label>Check out:</label>
             <input
               required
+              min={new Date().toISOString().split('T')[0]}
               type='date'
               value={checkOut}
               onChange={(e) => setCheckOut(e.target.value)}

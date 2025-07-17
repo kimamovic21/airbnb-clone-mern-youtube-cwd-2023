@@ -8,7 +8,6 @@ import BookingDates from '../components/BookingDates';
 
 const BookingsPage = () => {
   const [bookings, setBookings] = useState([]);
-  console.log(bookings);
 
   useEffect(() => {
     axios.get('/bookings').then(response => {

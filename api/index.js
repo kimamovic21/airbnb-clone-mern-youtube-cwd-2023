@@ -218,6 +218,7 @@ app.put('/places', async (req, res) => {
         checkIn,
         checkOut,
         maxGuests,
+        price
       });
 
       await placeDoc.save();
@@ -236,9 +237,7 @@ app.post('/bookings', async (req, res) => {
     const { token } = req.cookies;
 
     if (!token) {
-      return res.status(401).json({
-        message: 'Unauthorized: No token provided'
-      });
+      return res.status(401).json({ message: 'Unauthorized: No token provided' });
     };
 
     const userData = await new Promise((resolve, reject) => {
@@ -258,19 +257,35 @@ app.post('/bookings', async (req, res) => {
       price
     } = req.body;
 
+    const now = new Date();
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
+
+    if (checkInDate < now || checkOutDate < now) {
+      return res.status(400).json({
+        message: 'You cannot book dates in the past.',
+      });
+    };
+
+    if (checkOutDate <= checkInDate) {
+      return res.status(400).json({
+        message: 'Check-out must be after check-in.',
+      });
+    };
+
     const overlappingBooking = await Booking.findOne({
       place,
       $or: [
         {
-          checkIn: { $lt: new Date(checkOut) },
-          checkOut: { $gt: new Date(checkIn) },
+          checkIn: { $lt: checkOutDate },
+          checkOut: { $gt: checkInDate },
         },
       ],
     });
 
     if (overlappingBooking) {
       return res.status(409).json({
-        message: 'This place is already booked for the selected dates. Please choose different dates.'
+        message: 'This place is already booked for the selected dates. Please choose different dates.',
       });
     };
 
